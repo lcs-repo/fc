@@ -13,18 +13,16 @@ const Flashcard: React.FC<FlashcardProps> = ({ question, answer, onNext }) => {
   const [content, setContent] = useState(question);
 
   useEffect(() => {
-    if (!isFlipped) {
-      setContent(question);
-    }
-  }, [isFlipped, question]);
+    setIsFlipped(false);
+    setContent(question);
+  }, [question]);
 
   const handleClick = () => {
     if (isFlipped) {
-      setIsFlipped(false);
       onNext();
     } else {
       setIsFlipped(true);
-      setTimeout(() => setContent(answer), 150); // Half of the flip animation time
+      setTimeout(() => setContent(answer), 150);
     }
   };
 
